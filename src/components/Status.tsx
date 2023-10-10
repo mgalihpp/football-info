@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import LeagueTable from "./LeagueTable";
+import { cn } from "@/lib/utils";
 
 const Status = ({
   matchesList,
@@ -32,24 +33,36 @@ const Status = ({
       <div className="flex space-x-4 mb-2 md:mb-4">
         <Button
           aria-label="today"
-          variant="outline"
+          variant="status"
           size="sm"
+          className={cn({
+            "bg-primary text-secondary hover:text-secondary hover:bg-primary/95":
+              statusMatch === "TODAY",
+          })}
           onClick={() => setUpdateStatusFilter("TODAY")}
         >
           Today
         </Button>
         <Button
           aria-label="upcoming"
-          variant="outline"
+          variant="status"
           size="sm"
+          className={cn({
+            "bg-primary text-secondary hover:text-secondary hover:bg-primary/95":
+              statusMatch === "UPCOMING",
+          })}
           onClick={() => setUpdateStatusFilter("UPCOMING")}
         >
           Upcoming
         </Button>
         <Button
           aria-label="finished"
-          variant="outline"
+          variant="status"
           size="sm"
+          className={cn({
+            "bg-primary text-secondary hover:text-secondary hover:bg-primary/95":
+              statusMatch === "FINISHED",
+          })}
           onClick={() => setUpdateStatusFilter("FINISHED")}
         >
           Finished
@@ -73,13 +86,23 @@ const Status = ({
             ))
           : null}
 
-        {statusMatch === "FINISHED"
+        {statusMatch === "FINISHED" && matchesListFinished === undefined ? (
+          <div className="text-center">
+            <p>
+              Match Not Found until 21 oct <br /> Please Try again later {":)"}{" "}
+              <br /> or select specific leagues
+            </p>
+          </div>
+        ) : null}
+
+        {/* used this when the data if already exits */}
+        {/* {statusMatch === "FINISHED"
           ? matchesListFinished?.map((data) => (
               <div key={data.id}>
                 {data.status === "FINISHED" && <LeagueTable data={data} />}
               </div>
             ))
-          : null}
+          : null} */}
       </div>
     </div>
   );

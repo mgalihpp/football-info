@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from './Providers/ThemeProvider'
 import Navbar from '@/components/Navbar'
+import SideBar from '@/components/Sidebar'
+import News from '@/components/News'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,10 +24,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <main className="px-2 md:px-16 md:py-2">
             <Navbar />
-            <section className="flex mx-auto items-center justify-center space-x-4 space-y-8 mt-20">
-              {/* <News /> */}
+            <section className="flex mx-auto justify-between space-x-4 space-y-8 mt-20">
+              <News />
               {children}
-              {/* <SideBar /> */}
+              <SideBar />
             </section>
           </main>
         </ThemeProvider>

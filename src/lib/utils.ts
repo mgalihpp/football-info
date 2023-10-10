@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const options: optionsProps = {
-  next: { revalidate: 600 },
+  next: { revalidate: 120 },
   headers: {
     "X-Auth-Token": process.env.FOOTBALL_API_KEY,
     "Content-Type": "application/json",
@@ -20,55 +20,55 @@ export const Leagues = [
   {
     id: 1,
     name: "Premier League",
-    href: "leagues/premierleague",
+    href: "/leagues/premierleague",
     emblem: "/img/leagues/premier_league.webp",
   },
   {
     id: 2,
     name: "Primera Division",
-    href: "leagues/laliga",
+    href: "/leagues/laliga",
     emblem: "/img/leagues/laliga.svg",
   },
   {
     id: 3,
     name: "Bundesliga",
-    href: "leagues/bundesliga",
+    href: "/leagues/bundesliga",
     emblem: "/img/leagues/bundesliga.webp",
   },
   {
     id: 4,
     name: "Serie A",
-    href: "leagues/seriea",
+    href: "/leagues/seriea",
     emblem: "/img/leagues/serie_a.webp",
   },
   {
     id: 5,
     name: "Ligue 1",
-    href: "leagues/liguea",
+    href: "/leagues/liguea",
     emblem: "/img/leagues/ligue_1.webp",
   },
   {
     id: 6,
     name: "Champion Ship",
-    href: "leagues/championship",
+    href: "/leagues/championship",
     emblem: "/img/leagues/championship.webp",
   },
   {
     id: 7,
     name: "Brazilian Championship Series A",
-    href: "leagues/brazilianseriesa",
+    href: "/leagues/brazilianseriesa",
     emblem: "/img/leagues/brazilian_serie_a.webp",
   },
   {
     id: 8,
     name: "UEFA Champions League",
-    href: "leagues/ucl",
+    href: "/leagues/ucl",
     emblem: "/img/leagues/ucl.webp",
   },
   {
     id: 9,
     name: "News",
-    href: "news",
+    href: "/news",
     emblem: "/img/news-football.webp",
   },
 ];
