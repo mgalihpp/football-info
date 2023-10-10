@@ -22,7 +22,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <main className="px-2 md:px-16 md:py-2">
             <Navbar />
-            <section className="flex justify-between space-x-4 space-y-8 mt-20">
+            <section className="flex mx-auto items-center justify-center space-x-4 space-y-8 mt-20">
               {/* <News /> */}
               {children}
               {/* <SideBar /> */}

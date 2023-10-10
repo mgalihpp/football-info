@@ -1,11 +1,10 @@
 import { dateConvert } from "@/lib/utils";
 import Status from "@/components/Status";
-import { getPl } from "./api/route";
+import { getBSA } from "@/app/api/route";
 
 export default async function Home() {
+  const { matches } = await getBSA;
 
-  const {matches} = await getPl
-  
   return (
     <main className="px-2 md:px-4 md:w-[600px]">
       <div className="flex justify-between items-center mb-4 md:mb-2">
@@ -14,7 +13,6 @@ export default async function Home() {
           <p className="text-xs">{dateConvert}</p>
         </div>
       </div>
-      {/* data matches */}
       <Status
         matchesList={matches}
         // matchesListFinished={getPLYesterday}
