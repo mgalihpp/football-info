@@ -56,7 +56,7 @@ export const Leagues = [
   {
     id: 7,
     name: "Brazilian Championship Series A",
-    href: "/leagues/brazilianseriesa",
+    href: "/leagues/brazillianseriesa",
     emblem: "/img/leagues/brazilian_serie_a.webp",
   },
   {
