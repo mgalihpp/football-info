@@ -1,5 +1,15 @@
 import { options } from "@/lib/utils";
-import Error from "next/error";
+
+//get matches
+export const getMatches = async () => {
+  const res = await fetch(`https://api.football-data.org/v4/matches`, options);
+
+  if (!res.ok) {
+    return "error";
+  }
+
+  return res.json();
+};
 
 export const getCompetition = async ({ code }: { code: string }) => {
   const res = await fetch(
@@ -14,14 +24,28 @@ export const getCompetition = async ({ code }: { code: string }) => {
   return res.json();
 };
 
-// get match ended
-// export const getMatchesFootballFinished = async () => {
-//   const matchData = await fetch(
-//     `https://api.football-data.org/v4/matches?date=YESTERDAY`,
-//     options
-//   );
-//   return matchData.json();
-// };
+//get match ended
+export const getMatchesFootballFinished = async () => {
+  const res = await fetch(
+    `https://api.football-data.org/v4/matches?date=YESTERDAY`,
+    options
+  );
+  if (!res.ok) {
+    return "error";
+  }
+  return res.json();
+};
+
+export const getStandings = async ({ code }: { code: string }) => {
+  const res = await fetch(
+    `https://api.football-data.org/v4/competitions/${code}/standings`,
+    options
+  );
+  if (!res.ok) {
+    return "error";
+  }
+  return res.json();
+};
 
 //get competition ?
 export const getPl = getCompetition({ code: "PL" }); //premier league
@@ -31,6 +55,9 @@ export const getELC = getCompetition({ code: "ELC" }); //champion ship
 export const getPD = getCompetition({ code: "PD" }); //laliga
 export const getFL1 = getCompetition({ code: "FL1" }); //ligue 1
 export const getSA = getCompetition({ code: "SA" }); // serie a
+
+//get standings?
+export const getPlStandings = getStandings({ code: "PL" }); //premier league
 
 // get news
 export const getNewsInfo = async ({ page }: { page: number }) => {
