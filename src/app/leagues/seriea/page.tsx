@@ -1,9 +1,11 @@
 import { dateConvert } from "@/lib/utils";
 import Status from "@/components/Status";
-import { getSA } from "@/app/api/route";
+import { getSA, getSAStandings } from "@/app/api/route";
 
 export default async function Home() {
   const { matches } = await getSA;
+
+  const data: Standings[] = await getSAStandings;
 
   return (
     <main className="px-2 md:px-4 md:w-[600px]">
@@ -16,6 +18,7 @@ export default async function Home() {
       <Status
         matchesList={matches}
         // matchesListFinished={getPLYesterday}
+        standings={data[0]?.table}
       />
     </main>
   );

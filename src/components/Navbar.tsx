@@ -12,7 +12,7 @@ const Navbar: FC = () => {
           <Image
             fill
             sizes="10vw"
-            className="object-cover"
+            className="object-fit"
             src="/football-info.png"
             alt="logo"
           />

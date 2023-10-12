@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const options: optionsProps = {
-  next: { revalidate: 120 },
+  next: { revalidate: 300 },
   headers: {
     "X-Auth-Token": process.env.FOOTBALL_API_KEY,
     "Content-Type": "application/json",
@@ -72,3 +72,10 @@ export const Leagues = [
     emblem: "/img/news-football.webp",
   },
 ];
+
+export const slideSetting = {
+  dots: true,
+  infinite: false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};

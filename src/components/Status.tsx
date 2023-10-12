@@ -4,15 +4,21 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import LeagueTable from "./LeagueTable";
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
+import LeagueStandings from "./LeagueStandings";
 
 const Status = ({
   matchesList,
   matchesListFinished,
+  standings,
 }: {
-  matchesList: matchesType[];
+  matchesList?: matchesType[];
   matchesListFinished?: matchesType[];
+  standings?: Table[];
 }) => {
   const [statusMatch, setStatusMatch] = useState<string | null>("TODAY");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [itemsToShow, setItemsToShow] = useState<number>(5);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {
@@ -21,88 +27,103 @@ const Status = ({
         setStatusMatch(storedStatusMatch);
       }
     }
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
 
   const setUpdateStatusFilter = (filter: string) => {
     setStatusMatch(filter);
+    setItemsToShow(5);
     localStorage.setItem("statusMatch", filter);
   };
 
+  const loadMore = () => {
+    setIsLoading(true);
+    setItemsToShow((prevItems) => prevItems + 5);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  };
+
+  const filteredMatchesList = matchesList?.filter((data) => {
+    if (statusMatch === "Upcoming" && data.status === "TIMED") return true;
+    if (statusMatch === "Finished" && data.status === "FINISHED") return true;
+    if (statusMatch === "Today" && data.status === "FINISHED") return false;
+    return false;
+  });
+
+  type textProps = {
+    text: string;
+  };
+
+  const buttonList: textProps[] = [
+    {
+      text: "Today",
+    },
+    {
+      text: "Upcoming",
+    },
+    {
+      text: "Finished",
+    },
+    {
+      text: "Standing",
+    },
+  ];
+
+  const filterStanding = standings?.filter((data) => {
+    if (statusMatch === "Standing") return true;
+    return false;
+  });
+
   return (
     <div>
-      <div className="flex space-x-4 mb-2 md:mb-4">
-        <Button
-          aria-label="today"
-          variant="status"
-          size="sm"
-          className={cn({
-            "bg-primary text-secondary hover:text-secondary hover:bg-primary/95":
-              statusMatch === "TODAY",
-          })}
-          onClick={() => setUpdateStatusFilter("TODAY")}
-        >
-          Today
-        </Button>
-        <Button
-          aria-label="upcoming"
-          variant="status"
-          size="sm"
-          className={cn({
-            "bg-primary text-secondary hover:text-secondary hover:bg-primary/95":
-              statusMatch === "UPCOMING",
-          })}
-          onClick={() => setUpdateStatusFilter("UPCOMING")}
-        >
-          Upcoming
-        </Button>
-        <Button
-          aria-label="finished"
-          variant="status"
-          size="sm"
-          className={cn({
-            "bg-primary text-secondary hover:text-secondary hover:bg-primary/95":
-              statusMatch === "FINISHED",
-          })}
-          onClick={() => setUpdateStatusFilter("FINISHED")}
-        >
-          Finished
-        </Button>
+      <div className="w-[350px] sm:w-full flex gap-2 overflow-x-auto">
+        {buttonList.map((list) => (
+          <Button
+            key={list.text}
+            aria-label={list.text}
+            variant="status"
+            size="sm"
+            className={cn("flex", {
+              "bg-primary text-secondary hover:text-secondary hover-bg-primary/95":
+                statusMatch === list.text,
+            })}
+            onClick={() => setUpdateStatusFilter(list.text)}
+          >
+            {list.text}
+          </Button>
+        ))}
       </div>
-      <div className="w-full">
-        {statusMatch === "TODAY" && matchesList.length > 0 ? (
+      {/* </div> */}
+      <div className="w-[350px] max-w-full sm:w-full">
+        {filteredMatchesList && filteredMatchesList.length > 0 ? (
+          filteredMatchesList.slice(0, itemsToShow).map((data) => (
+            <div key={data.id}>
+              <LeagueTable data={data} />
+            </div>
+          ))
+        ) : filterStanding && filterStanding.length > 0 ? (
+          <LeagueStandings data={standings ?? []} />
+        ) : (
           <div className="text-center">
             <p>
-              Match Not Found until 21 oct <br /> Please Try again later {":)"}{" "}
+              Match Not Found until 21 Oct <br /> Please Try again later {":)"}{" "}
               <br /> or select specific leagues
             </p>
           </div>
-        ) : null}
-
-        {statusMatch === "UPCOMING"
-          ? matchesList.map((data) => (
-              <div key={data.id}>
-                {data.status === "TIMED" && <LeagueTable data={data} />}
-              </div>
-            ))
-          : null}
-
-        {statusMatch === "FINISHED" && matchesListFinished === undefined ? (
-          <div className="text-center">
-            <p>
-              Match Not Found until 21 oct <br /> Please Try again later {":)"}{" "}
-              <br /> or select specific leagues
-            </p>
-          </div>
-        ) : null}
-
-        {/* used this when the data if already exits */}
-        {/* {statusMatch === "FINISHED"
-          ? matchesListFinished?.map((data) => (
-              <div key={data.id}>
-                {data.status === "FINISHED" && <LeagueTable data={data} />}
-              </div>
-            ))
-          : null} */}
+        )}
+        {filteredMatchesList && itemsToShow < filteredMatchesList.length && (
+          <Button
+            className="flex items-center justify-center mx-auto my-6"
+            onClick={loadMore}
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              "Load More..."
+            )}
+          </Button>
+        )}
       </div>
     </div>
   );

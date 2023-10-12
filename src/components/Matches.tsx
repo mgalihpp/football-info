@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Matches = ({ data }: { data: matchesType }) => {
   const getDate = new Date(data?.utcDate).toLocaleTimeString("en-Us", {
@@ -12,9 +12,9 @@ const Matches = ({ data }: { data: matchesType }) => {
           <Image
             src={data?.homeTeam?.crest!}
             alt={data?.homeTeam?.name!}
-            fill
+            layout="fill"
+            objectFit='contain'
             sizes="10vw"
-            className="object-cover"
           />
         </div>
         <p className="text-xs sm:text-sm ">{data?.homeTeam?.name}</p>
@@ -34,9 +34,9 @@ const Matches = ({ data }: { data: matchesType }) => {
           <Image
             src={data?.awayTeam?.crest!}
             alt={data?.awayTeam?.name!}
-            fill
-            sizes="10vw"
-            className="object-cover"
+            layout="fill"
+            objectFit="contain"
+            sizes="20vw"
           />
         </div>
       </div>

@@ -13,7 +13,7 @@ const Competition = ({ data }: { data: matchesType }) => {
           alt={data?.competition.name}
           width={20}
           height={20}
-          className="object-cover dark:bg-primary rounded-sm"
+          className="dark:bg-primary rounded-sm"
         />
         <p className="text-xs sm:text-sm text-primary">{data?.competition.name}</p>
       </div>
