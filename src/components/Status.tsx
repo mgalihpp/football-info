@@ -51,6 +51,10 @@ const Status = ({
     return false;
   });
 
+  if (statusMatch === "Finished") {
+    filteredMatchesList?.reverse();
+  }
+
   type textProps = {
     text: string;
   };
@@ -105,10 +109,10 @@ const Status = ({
         ) : filterStanding && filterStanding.length > 0 ? (
           <LeagueStandings data={standings ?? []} />
         ) : (
-          <div className="text-center">
+          <div className="text-center mt-6">
             <p>
-              Match Not Found until 21 Oct <br /> Please Try again later {":)"}{" "}
-              <br /> or select specific leagues
+              Match Not Found <br /> Please Try again later {":)"} <br /> or
+              select any specific leagues
             </p>
           </div>
         )}

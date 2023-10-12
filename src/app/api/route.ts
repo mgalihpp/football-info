@@ -70,7 +70,7 @@ export const getSAStandings = getStandings({ code: "SA" }); //serie a
 export const getNewsInfo = async ({ page }: { page: number }) => {
   const newsData = await fetch(
     `https://newsapi.org/v2/everything?apiKey=${process.env.NEWS_API_KEY}&q=soccer&pageSize=${page}`,
-    { next: { revalidate: 600 } }
+    { next: { revalidate: 30 } }
   );
   if (!newsData.ok) {
     return "error";
