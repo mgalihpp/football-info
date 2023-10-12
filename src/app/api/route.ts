@@ -44,7 +44,8 @@ export const getStandings = async ({ code }: { code: string }) => {
   if (!res.ok) {
     return "error";
   }
-  return res.json();
+  const data = await res.json();
+  return data.standings;
 };
 
 //get competition ?
@@ -58,12 +59,18 @@ export const getSA = getCompetition({ code: "SA" }); // serie a
 
 //get standings?
 export const getPlStandings = getStandings({ code: "PL" }); //premier league
+export const getBSAStandings = getStandings({ code: "BSA" }); //brazil
+export const getBL1Standings = getStandings({ code: "BL1" }); //bundesliga
+export const getELCStandings = getStandings({ code: "ELC" }); //champion ship
+export const getPDStandings = getStandings({ code: "PD" }); //laliga
+export const getFL1Standings = getStandings({ code: "FL1" }); //ligue 1
+export const getSAStandings = getStandings({ code: "SA" }); //serie a
 
 // get news
 export const getNewsInfo = async ({ page }: { page: number }) => {
   const newsData = await fetch(
     `https://newsapi.org/v2/everything?apiKey=${process.env.NEWS_API_KEY}&q=soccer&pageSize=${page}`,
-    { cache: "no-cache" }
+    { next: { revalidate: 600 } }
   );
   if (!newsData.ok) {
     return "error";
