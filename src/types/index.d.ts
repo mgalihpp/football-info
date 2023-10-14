@@ -86,9 +86,22 @@ type Standings = {
 };
 
 type textProps = {
-  text: "Today" | "Upcoming" | "Finished" | "Standing"
+  text: "Today" | "Upcoming" | "Finished" | "Standing";
 };
 
+/** 
+A type props that represents the league names and codes.
+@property league
+**/
 type leagueProps = {
-  league: "PL" | "BSA" | "BL1" | "ELC" | "PD" | "FL1" | "SA"
-}
+  /**
+@property {string} PL - Premier League
+@property {string} BSA - Brasileirão Serie A
+@property {string} BL1 - Bundesliga
+@property {string} ELC - English Football League Championship
+@property {string} PD - La Liga
+@property {string} FL1 - Ligue 1
+@property {string} SA - Serie A 
+**/
+  league: "PL" | "BSA" | "BL1" | "ELC" | "PD" | "FL1" | "SA";
+};

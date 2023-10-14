@@ -3,12 +3,9 @@ import Status from "@/components/Status";
 import { getCompetition, getMatches, getStandings } from "@/app/api/route";
 
 export default async function Home() {
-  const { matches: bsa } = await getCompetition({ league: "BSA" });
   const {matches} = await getMatches();
-  console.log(matches)
 
-
-  const standings: Standings[] = await getStandings({ league: "BSA" });
+  const standings: Standings[] = await getStandings({ league: "PL" });
 
   return (
     <main className="mx-auto px-2 md:px-4 md:w-[600px]">
