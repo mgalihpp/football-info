@@ -11,9 +11,9 @@ export const getMatches = async () => {
   return res.json();
 };
 
-export const getCompetition = async ({ code }: { code: string }) => {
+export const getCompetition = async ({ league }: leagueProps) => {
   const res = await fetch(
-    `https://api.football-data.org//v4/competitions/${code}/matches`,
+    `https://api.football-data.org//v4/competitions/${league}/matches`,
     options
   );
 
@@ -36,9 +36,9 @@ export const getMatchesFootballFinished = async () => {
   return res.json();
 };
 
-export const getStandings = async ({ code }: { code: string }) => {
+export const getStandings = async ({ league }: leagueProps) => {
   const res = await fetch(
-    `https://api.football-data.org/v4/competitions/${code}/standings`,
+    `https://api.football-data.org/v4/competitions/${league}/standings`,
     options
   );
   if (!res.ok) {
@@ -49,22 +49,22 @@ export const getStandings = async ({ code }: { code: string }) => {
 };
 
 //get competition ?
-export const getPl = getCompetition({ code: "PL" }); //premier league
-export const getBSA = getCompetition({ code: "BSA" }); //brazil
-export const getBL1 = getCompetition({ code: "BL1" }); //bundesliga
-export const getELC = getCompetition({ code: "ELC" }); //champion ship
-export const getPD = getCompetition({ code: "PD" }); //laliga
-export const getFL1 = getCompetition({ code: "FL1" }); //ligue 1
-export const getSA = getCompetition({ code: "SA" }); // serie a
+// export const getPl = getCompetition({ code: "PL" }); //premier league
+// export const getBSA = getCompetition({ code: "BSA" }); //brazil
+// export const getBL1 = getCompetition({ code: "BL1" }); //bundesliga
+// export const getELC = getCompetition({ code: "ELC" }); //champion ship
+// export const getPD = getCompetition({ code: "PD" }); //laliga
+// export const getFL1 = getCompetition({ code: "FL1" }); //ligue 1
+// export const getSA = getCompetition({ code: "SA" }); // serie a
 
-//get standings?
-export const getPlStandings = getStandings({ code: "PL" }); //premier league
-export const getBSAStandings = getStandings({ code: "BSA" }); //brazil
-export const getBL1Standings = getStandings({ code: "BL1" }); //bundesliga
-export const getELCStandings = getStandings({ code: "ELC" }); //champion ship
-export const getPDStandings = getStandings({ code: "PD" }); //laliga
-export const getFL1Standings = getStandings({ code: "FL1" }); //ligue 1
-export const getSAStandings = getStandings({ code: "SA" }); //serie a
+// //get standings?
+// export const getPlStandings = getStandings({ code: "PL" }); //premier league
+// export const getBSAStandings = getStandings({ code: "BSA" }); //brazil
+// export const getBL1Standings = getStandings({ code: "BL1" }); //bundesliga
+// export const getELCStandings = getStandings({ code: "ELC" }); //champion ship
+// export const getPDStandings = getStandings({ code: "PD" }); //laliga
+// export const getFL1Standings = getStandings({ code: "FL1" }); //ligue 1
+// export const getSAStandings = getStandings({ code: "SA" }); //serie a
 
 // get news
 export const getNewsInfo = async ({ page }: { page: number }) => {

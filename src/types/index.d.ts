@@ -46,7 +46,7 @@ type matchesType = {
   competition: matchesCompetition;
   id: number;
   utcDate: string;
-  status: string;
+  status: "TIMED" | "FINISHED";
   matchday?: number;
   homeTeam?: matchesHomeTeam;
   awayTeam?: matchesAwayTeam;
@@ -61,10 +61,10 @@ type newsType = {
 
 type teamType = {
   id?: number;
-  name: string;
-  shortName: string;
-  tla: string;
-  crest: string;
+  name?: string;
+  shortName?: string;
+  tla?: string;
+  crest?: string;
 };
 
 type Table = {
@@ -84,3 +84,11 @@ type Table = {
 type Standings = {
   table?: Table[];
 };
+
+type textProps = {
+  text: "Today" | "Upcoming" | "Finished" | "Standing"
+};
+
+type leagueProps = {
+  league: "PL" | "BSA" | "BL1" | "ELC" | "PD" | "FL1" | "SA"
+}

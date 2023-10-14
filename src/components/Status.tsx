@@ -16,7 +16,7 @@ const Status = ({
   matchesListFinished?: matchesType[];
   standings?: Table[];
 }) => {
-  const [statusMatch, setStatusMatch] = useState<string | null>("TODAY");
+  const [statusMatch, setStatusMatch] = useState<string | null>("Today");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [itemsToShow, setItemsToShow] = useState<number>(5);
 
@@ -44,20 +44,16 @@ const Status = ({
     }, 500);
   };
 
-  const filteredMatchesList = matchesList?.filter((data) => {
-    if (statusMatch === "Upcoming" && data.status === "TIMED") return true;
-    if (statusMatch === "Finished" && data.status === "FINISHED") return true;
-    if (statusMatch === "Today" && data.status === "FINISHED") return false;
+  const filteredMatchesList = matchesList?.filter((match) => {
+    if (statusMatch === "Upcoming" && match.status === "TIMED") return true;
+    if (statusMatch === "Finished" && match.status === "FINISHED") return true;
+    if (statusMatch === "Today" && match.status === "FINISHED") return false;
     return false;
   });
 
   if (statusMatch === "Finished") {
     filteredMatchesList?.reverse();
   }
-
-  type textProps = {
-    text: string;
-  };
 
   const buttonList: textProps[] = [
     {
@@ -101,9 +97,9 @@ const Status = ({
       {/* </div> */}
       <div className="w-[350px] max-w-full sm:w-full">
         {filteredMatchesList && filteredMatchesList.length > 0 ? (
-          filteredMatchesList.slice(0, itemsToShow).map((data) => (
-            <div key={data.id}>
-              <LeagueTable data={data} />
+          filteredMatchesList.slice(0, itemsToShow).map((match) => (
+            <div key={match.id}>
+              <LeagueTable data={match} />
             </div>
           ))
         ) : filterStanding && filterStanding.length > 0 ? (
