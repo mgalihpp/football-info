@@ -1,7 +1,7 @@
 import Image from "next/legacy/image";
 
-const Matches = ({ data }: { data: matchesType }) => {
-  const getDate = new Date(data?.utcDate).toLocaleTimeString("en-Us", {
+const Matches = ({ match }: { match: matchesType }) => {
+  const getDate = new Date(match?.utcDate).toLocaleTimeString("en-Us", {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -10,30 +10,30 @@ const Matches = ({ data }: { data: matchesType }) => {
       <div className="w-full flex items-center">
         <div className="w-6 h-6 relative mr-2">
           <Image
-            src={data?.homeTeam?.crest!}
-            alt={data?.homeTeam?.name!}
+            src={match?.homeTeam?.crest!}
+            alt={match?.homeTeam?.name!}
             layout="fill"
             objectFit='contain'
             sizes="10vw"
           />
         </div>
-        <p className="text-xs sm:text-sm ">{data?.homeTeam?.name}</p>
+        <p className="text-xs sm:text-sm ">{match?.homeTeam?.name}</p>
       </div>
       <div className="px-2 m-auto flex justify-center items-center bg-zinc-200 dark:bg-zinc-900 dark:border rounded-md">
-        {data?.status == "FINISHED" ? (
+        {match?.status == "FINISHED" ? (
           <p className="py-1 text-xs sm:text-sm">
-            {data?.score?.fullTime?.home} : {data?.score?.fullTime?.away}
+            {match?.score?.fullTime?.home} : {match?.score?.fullTime?.away}
           </p>
         ) : (
           <p className="py-1 text-xs sm:text-sm">{getDate}</p>
         )}
       </div>
       <div className="w-full flex items-center justify-end">
-        <p className="text-xs sm:text-sm text-right">{data?.awayTeam?.name}</p>
+        <p className="text-xs sm:text-sm text-right">{match?.awayTeam?.name}</p>
         <div className="w-6 h-6 relative ml-2">
           <Image
-            src={data?.awayTeam?.crest!}
-            alt={data?.awayTeam?.name!}
+            src={match?.awayTeam?.crest!}
+            alt={match?.awayTeam?.name!}
             layout="fill"
             objectFit="contain"
             sizes="20vw"

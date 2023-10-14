@@ -8,12 +8,12 @@ import { Loader2 } from "lucide-react";
 import LeagueStandings from "./LeagueStandings";
 
 const Status = ({
-  matchesList,
-  matchesListFinished,
+  getMatches,
+  getMatchesFinished,
   standings,
 }: {
-  matchesList?: matchesType[];
-  matchesListFinished?: matchesType[];
+  getMatches?: matchesType[];
+  getMatchesFinished?: matchesType[];
   standings?: Table[];
 }) => {
   const [statusMatch, setStatusMatch] = useState<string | null>("Today");
@@ -44,10 +44,10 @@ const Status = ({
     }, 500);
   };
 
-  const filteredMatchesList = matchesList?.filter((match) => {
+  const filteredMatchesList = getMatches?.filter((match) => {
     if (statusMatch === "Upcoming" && match.status === "TIMED") return true;
     if (statusMatch === "Finished" && match.status === "FINISHED") return true;
-    if (statusMatch === "Today" && match.status === "FINISHED") return false;
+    if (statusMatch === "Today" && match.status !== "FINISHED") return false;
     return false;
   });
 
@@ -70,7 +70,7 @@ const Status = ({
     },
   ];
 
-  const filterStanding = standings?.filter((data) => {
+  const filterStanding = standings?.filter(() => {
     if (statusMatch === "Standing") return true;
     return false;
   });
@@ -78,19 +78,19 @@ const Status = ({
   return (
     <div>
       <div className="w-[350px] sm:w-full flex gap-2 overflow-x-auto">
-        {buttonList.map((list) => (
+        {buttonList.map((status) => (
           <Button
-            key={list.text}
-            aria-label={list.text}
+            key={status.text}
+            aria-label={status.text}
             variant="status"
             size="sm"
             className={cn("flex", {
               "bg-primary text-secondary hover:text-secondary hover-bg-primary/95":
-                statusMatch === list.text,
+                statusMatch === status.text,
             })}
-            onClick={() => setUpdateStatusFilter(list.text)}
+            onClick={() => setUpdateStatusFilter(status.text)}
           >
-            {list.text}
+            {status.text}
           </Button>
         ))}
       </div>
@@ -99,11 +99,11 @@ const Status = ({
         {filteredMatchesList && filteredMatchesList.length > 0 ? (
           filteredMatchesList.slice(0, itemsToShow).map((match) => (
             <div key={match.id}>
-              <LeagueTable data={match} />
+              <LeagueTable getMatch={match} />
             </div>
           ))
         ) : filterStanding && filterStanding.length > 0 ? (
-          <LeagueStandings data={standings ?? []} />
+          <LeagueStandings getStanding={standings ?? []} />
         ) : (
           <div className="text-center mt-6">
             <p>

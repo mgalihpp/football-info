@@ -1,24 +1,24 @@
 import { dateConvert } from "@/lib/utils";
 import Status from "@/components/Status";
-import { getSA, getSAStandings } from "@/app/api/route";
+import { getCompetition, getStandings } from "@/app/api/route";
 
 export default async function Home() {
-  const { matches } = await getSA;
+  const { matches } = await getCompetition({ league: "SA" });
 
-  const data: Standings[] = await getSAStandings;
+  const standings: Standings[] = await getStandings({ league: "SA" });
 
   return (
     <main className="px-2 md:px-4 md:w-[600px]">
       <div className="flex justify-between items-center mb-4 md:mb-2">
-        <h1 className="text-md md:text-xl font-bold">SERIE A MATCHES</h1>
+        <h1 className="text-md md:text-xl font-bold">PREMIER LEAGUE MATCHES</h1>
         <div className="px-4 py-0 md:py-1 bg-slate-900 dark:bg-slate-100 rounded-md text-secondary text-sm">
           <p className="text-xs">{dateConvert}</p>
         </div>
       </div>
       <Status
-        matchesList={matches}
+        getMatches={matches}
         // matchesListFinished={getPLYesterday}
-        standings={data[0]?.table}
+        standings={standings[0]?.table}
       />
     </main>
   );

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-const Competition = ({ data }: { data: matchesType }) => {
-  const date = new Date(data?.utcDate);
+const Competition = ({ match }: { match: matchesType }) => {
+  const date = new Date(match?.utcDate);
   const dateConvert = date.toDateString();
 
   return (
@@ -9,13 +9,15 @@ const Competition = ({ data }: { data: matchesType }) => {
       <div className="flex space-x-4">
         <Image
           sizes="10vw"
-          src={data?.competition.emblem}
-          alt={data?.competition.name}
+          src={match?.competition.emblem}
+          alt={match?.competition.name}
           width={20}
           height={20}
           className="dark:bg-primary rounded-sm"
         />
-        <p className="text-xs sm:text-sm text-primary">{data?.competition.name}</p>
+        <p className="text-xs sm:text-sm text-primary">
+          {match?.competition.name}
+        </p>
       </div>
       <p className="text-xs md:text-sm text-primary">{dateConvert}</p>
     </div>

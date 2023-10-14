@@ -16,7 +16,7 @@ export default async function Home() {
         </div>
       </div>
       <Status
-        matchesList={matches}
+        getMatches={matches}
         // matchesListFinished={getPLYesterday}
         standings={standings[0]?.table}
       />
