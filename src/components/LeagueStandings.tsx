@@ -7,7 +7,7 @@ const LeagueStandings = ({
   getStanding: Table[];
 }) => {
   return (
-    <div className="pt-3 overflow-x-auto">
+    <div className="pt-3 mx-auto overflow-x-auto min-w-[100px] max-w-[100%] pr-6 sm:pr-0 sm:max-w-[600px]">
       <table className="w-full border-2">
         <thead>
           <tr className="bg-zinc-200 dark:bg-zinc-700">
