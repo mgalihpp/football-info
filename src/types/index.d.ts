@@ -103,5 +103,5 @@ type leagueProps = {
 @property {string} FL1 - Ligue 1
 @property {string} SA - Serie A 
 **/
-  league: "PL" | "BSA" | "BL1" | "ELC" | "PD" | "FL1" | "SA";
+  league: string | undefined;
 };

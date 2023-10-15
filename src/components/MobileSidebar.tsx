@@ -31,7 +31,7 @@ const MobileSideBar = () => {
               <div key={league.id} className="flex mt-2">
                 {/* Use the Link component to navigate */}
                 <Link
-                  href={league.href}
+                  href={"/leagues/" + league.href}
                   onClick={toggleOpen}
                   className="flex w-full items-center py-2 px-2 rounded-md hover:bg-zinc-200 hover:dark:bg-zinc-700"
                 >

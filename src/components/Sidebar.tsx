@@ -1,9 +1,13 @@
-import { FC } from "react";
+"use client"
+
+import { FC, useState } from "react";
 import { Leagues } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 
 const SideBar: FC = () => {
+  const [active, setActive] = useState<string>("");
+
   return (
     <section className="hidden sm:block mt-20 px-2 md:px-4 py-2 h-full bg-zinc-100 shadow dark:bg-zinc-900 rounded-md">
       <div>
@@ -13,8 +17,11 @@ const SideBar: FC = () => {
           {Leagues.map((league) => (
             <div key={league.id} className="flex">
               <Link
-                href={league.href}
-                className="flex w-full items-center py-2 px-2 rounded-md hover:bg-zinc-200 hover:dark:bg-zinc-700"
+                href={"/leagues/" + league.href}
+                onClick={() => setActive(league.name)}
+                className={`flex w-full items-center py-2 px-2 rounded-md hover:bg-zinc-200 hover:dark:bg-zinc-700 ${
+                  active === league.name ? "bg-zinc-200 dark:bg-zinc-700" : ""
+                }`}
               >
                 <Image
                   src={league.emblem}
