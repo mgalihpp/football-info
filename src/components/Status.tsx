@@ -77,7 +77,7 @@ const Status = ({
 
   return (
     <div>
-      <div className="w-[350px] sm:w-full flex gap-2 overflow-x-auto">
+      <div className="w-[350px] sm:w-full flex gap-2">
         {buttonList.map((status) => (
           <Button
             key={status.text}
