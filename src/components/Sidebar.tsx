@@ -15,7 +15,7 @@ const SideBar: FC = () => {
         <div className="border-y my-2 dark:border-zinc-100 border-zinc-500 w-full" />
         <ul className="space-y-2">
           {Leagues.map((league) => (
-            <div key={league.id} className="flex">
+            <li key={league.id} className="flex">
               <Link
                 href={"/leagues/" + league.href}
                 onClick={() => setActive(league.name)}
@@ -32,7 +32,7 @@ const SideBar: FC = () => {
                 />
                 <p className="ml-4 text-base md:text-sm">{league.name}</p>
               </Link>
-            </div>
+            </li>
           ))}
         </ul>
       </div>
