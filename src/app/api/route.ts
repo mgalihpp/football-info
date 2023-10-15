@@ -48,24 +48,6 @@ export const getStandings = async ({ league }: leagueProps) => {
   return data.standings;
 };
 
-//get competition ?
-// export const getPl = getCompetition({ code: "PL" }); //premier league
-// export const getBSA = getCompetition({ code: "BSA" }); //brazil
-// export const getBL1 = getCompetition({ code: "BL1" }); //bundesliga
-// export const getELC = getCompetition({ code: "ELC" }); //champion ship
-// export const getPD = getCompetition({ code: "PD" }); //laliga
-// export const getFL1 = getCompetition({ code: "FL1" }); //ligue 1
-// export const getSA = getCompetition({ code: "SA" }); // serie a
-
-// //get standings?
-// export const getPlStandings = getStandings({ code: "PL" }); //premier league
-// export const getBSAStandings = getStandings({ code: "BSA" }); //brazil
-// export const getBL1Standings = getStandings({ code: "BL1" }); //bundesliga
-// export const getELCStandings = getStandings({ code: "ELC" }); //champion ship
-// export const getPDStandings = getStandings({ code: "PD" }); //laliga
-// export const getFL1Standings = getStandings({ code: "FL1" }); //ligue 1
-// export const getSAStandings = getStandings({ code: "SA" }); //serie a
-
 // get news
 export const getNewsInfo = async ({ page }: { page: number }) => {
   const newsData = await fetch(
