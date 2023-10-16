@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const options: optionsProps = {
-  next: { revalidate: 10 },
+  cache: 'max-age=60',
   headers: {
     "X-Auth-Token": process.env.FOOTBALL_API_KEY,
     "Content-Type": "application/json",
