@@ -5,6 +5,7 @@ import { ThemeProvider } from "./Providers/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import SideBar from "@/components/Sidebar";
 import News from "@/components/News";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
             </section>
           </main>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
