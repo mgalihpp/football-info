@@ -1,11 +1,13 @@
 import { dateConvert } from "@/lib/utils";
 import Status from "@/components/Status";
-import { getMatches, getStandings } from "@/app/api/route";
+import { getMatches, getStandings, getTopScore } from "@/app/api/route";
 
 export default async function Home() {
-  const {matches} = await getMatches();
+  const { matches } = await getMatches();
 
   const standings: Standings[] = await getStandings({ league: "PL" });
+
+  const competitions: TopScore = await getTopScore({ league: "PL" });
 
   return (
     <main className="mx-auto px-2 md:px-4 md:w-[600px]">
@@ -18,6 +20,7 @@ export default async function Home() {
       <Status
         getMatches={matches}
         // matchesListFinished={getPLYesterday}
+        topScore={competitions}
         standings={standings[0]?.table}
       />
     </main>

@@ -6,15 +6,18 @@ import LeagueTable from "./LeagueTable";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import LeagueStandings from "./LeagueStandings";
+import LeagueTopScore from "./LeaguesTopScore";
 
 const Status = ({
   getMatches,
   getMatchesFinished,
+  topScore,
   standings,
 }: {
   getMatches?: matchesType[];
   getMatchesFinished?: matchesType[];
   standings?: Table[];
+  topScore?: TopScore;
 }) => {
   const [statusMatch, setStatusMatch] = useState<string | null>("Today");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -55,7 +58,7 @@ const Status = ({
     filteredMatchesList?.reverse();
   }
 
-  const buttonList: textProps[] = [
+  const category: textProps[] = [
     {
       text: "Today",
     },
@@ -68,6 +71,9 @@ const Status = ({
     {
       text: "Standing",
     },
+    {
+      text: "Top Score",
+    },
   ];
 
   const filterStanding = standings?.filter(() => {
@@ -75,10 +81,15 @@ const Status = ({
     return false;
   });
 
+  const filterTopScore = topScore?.scorers?.filter(() => {
+    if (statusMatch == "Top Score") return true;
+    return false;
+  });
+
   return (
     <div>
       <div className="w-[350px] sm:w-full flex gap-2">
-        {buttonList.map((status) => (
+        {category.map((status) => (
           <Button
             key={status.text}
             aria-label={status.text}
@@ -104,6 +115,8 @@ const Status = ({
           ))
         ) : filterStanding && filterStanding.length > 0 ? (
           <LeagueStandings getStanding={standings ?? []} />
+        ) : filterTopScore && filterTopScore.length > 0 ? (
+          <LeagueTopScore getTopScore={topScore?.scorers ?? []} />
         ) : (
           <div className="text-center mt-6">
             <p>

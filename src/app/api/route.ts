@@ -48,6 +48,17 @@ export const getStandings = async ({ league }: leagueProps) => {
   return data.standings;
 };
 
+export const getTopScore = async ({ league }: leagueProps) => {
+  const res = await fetch(
+    `https://api.football-data.org/v4/competitions/${league}/scorers`,
+    options
+  );
+  if (!res.ok) {
+    return "error";
+  }
+  return await res.json();
+};
+
 // get news
 export const getNewsInfo = async ({ page }: { page: number }) => {
   const newsData = await fetch(

@@ -86,7 +86,7 @@ type Standings = {
 };
 
 type textProps = {
-  text: "Today" | "Upcoming" | "Finished" | "Standing";
+  text: "Today" | "Upcoming" | "Finished" | "Standing" | "Top Score";
 };
 
 /** 
@@ -104,4 +104,49 @@ type leagueProps = {
 @property {string} SA - Serie A 
 **/
   league: string | undefined;
+};
+
+type playerType = {
+  id: number;
+  name: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  nationality: string;
+  section: string;
+  position: null;
+  shirtNumber: null;
+  lastUpdated: string;
+};
+
+type teamType = {
+  id: number;
+  name: string;
+  shortName: string;
+  tla: string;
+  crest: string;
+  address: string;
+  website: string;
+  founded: number;
+  clubColors: string;
+  venue: string;
+  lastUpdated: string;
+};
+
+type scorersType = {
+  player: playerType;
+  team: teamType;
+  playedMatches: number;
+  goals: number;
+  assists: number;
+  penalties: number;
+};
+
+type TopScore = {
+  filters: {
+    season?: string;
+    limit?: number;
+  };
+  competition?: matchesCompetition;
+  scorers?: scorersType[];
 };

@@ -1,4 +1,4 @@
-import { getCompetition, getStandings } from "@/app/api/route";
+import { getCompetition, getStandings, getTopScore } from "@/app/api/route";
 import Status from "@/components/Status";
 import { Leagues, dateConvert } from "@/lib/utils";
 import { notFound } from "next/navigation";
@@ -18,6 +18,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     league: matchedLeague.code,
   });
 
+  const competitions = await getTopScore({ league: matchedLeague.code });
+
   return (
     <main className="mx-auto px-2 md:px-4 md:w-[600px]">
       <div className="flex justify-between items-center mb-4 md:mb-2">
@@ -31,6 +33,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <Status
         getMatches={matches}
         // matchesListFinished={getPLYesterday}
+        topScore={competitions}
         standings={standings[0]?.table}
       />
     </main>
