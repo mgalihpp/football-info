@@ -17,6 +17,7 @@ const Navbar: FC = () => {
             className="object-fit"
             src="/football-info.png"
             alt="logo"
+            loading="lazy"
           />
         </div>
         <span className="text-sm sm:text-2xl font-bold none md:block z-50">
