@@ -48,7 +48,7 @@ const LeagueStandings = ({
                     alt={table.team?.tla!}
                     layout="fill"
                     objectFit="contain"
-                    loading="lazy"
+                    priority={true}
                   />
                 </div>
                 <p className="text-xs font-medium">{table.team?.shortName}</p>

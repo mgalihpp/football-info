@@ -51,6 +51,7 @@ const LeagueTopScore = ({
                     alt={table.team?.tla!}
                     layout="fill"
                     objectFit="contain"
+                    priority={true}
                   />
                 </div>
                 <p className="text-xs font-medium">{table.team?.shortName}</p>

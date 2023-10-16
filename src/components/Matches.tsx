@@ -15,7 +15,7 @@ const Matches = ({ match }: { match: matchesType }) => {
             layout="fill"
             objectFit='contain'
             sizes="10vw"
-            loading="lazy"
+            priority={true}
           />
         </div>
         <p className="text-xs sm:text-sm ">{match?.homeTeam?.name}</p>
@@ -38,7 +38,7 @@ const Matches = ({ match }: { match: matchesType }) => {
             layout="fill"
             objectFit="contain"
             sizes="20vw"
-            loading="lazy"
+            priority={true}
           />
         </div>
       </div>

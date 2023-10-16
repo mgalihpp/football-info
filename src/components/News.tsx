@@ -24,7 +24,6 @@ const News = async () => {
                   priority={true}
                   sizes="20vw"
                   className="object-cover rounded-md"
-                  loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 w-full p-2 z-10">
                   <p className="font-semibold whitespace-nowrap overflow-hidden max-w-[150px] transition-max-width text-ellipsis text-[15px] text-zinc-200 box-border group-hover:max-w-none group-hover:whitespace-normal">

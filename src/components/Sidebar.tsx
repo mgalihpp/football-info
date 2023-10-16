@@ -29,7 +29,7 @@ const SideBar: FC = () => {
                   width={20}
                   height={20}
                   className="aspect-square"
-                  loading="lazy"
+                  priority={true}
                 />
                 <p className="ml-4 text-base md:text-sm">{league.name}</p>
               </Link>

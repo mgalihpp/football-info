@@ -14,7 +14,7 @@ const Competition = ({ match }: { match: matchesType }) => {
           width={20}
           height={20}
           className="dark:bg-primary rounded-sm"
-          loading="lazy"
+          priority={true}
         />
         <p className="text-xs sm:text-sm text-primary">
           {match?.competition.name}
