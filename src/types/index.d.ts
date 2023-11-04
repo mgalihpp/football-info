@@ -1,6 +1,6 @@
 type optionsProps = {
   next?: { revalidate: number };
-  cache?: string | any;
+  cache?: "no-cache" | "no-store" | undefined;
   headers: {
     "X-Auth-Token": string | any;
     "Content-Type": string | any;

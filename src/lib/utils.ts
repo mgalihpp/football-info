@@ -6,11 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const options: optionsProps = {
-  next: { revalidate: 60 },
   headers: {
     "X-Auth-Token": process.env.FOOTBALL_API_KEY,
     "Content-Type": "application/json",
   },
+  cache: "no-cache",
 };
 
 const date = new Date();
